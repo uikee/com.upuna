@@ -22,7 +22,7 @@ public JSONArray queryReturnAddress(String address) throws Exception {
 											"from PERSON " +
 											"where UPPER(ADDRESS) = ? ");
 			
-			query.setString(1, address.toUpperCase()); //protect against sql injection
+			query.setString(1, address.toUpperCase());  //protect against sql injection
 			ResultSet rs = query.executeQuery();
 			
 			json = converter.toJSONArray(rs);
