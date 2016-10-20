@@ -43,5 +43,31 @@ public class V2_person {
 		
 		return Response.ok(returnString).build();
 	}
+	
+	@Path("/{address}")
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response returnBrand(
+				@PathParam("address") String address) 
+				throws Exception {
+		
+		String returnString = null;
+		
+		JSONArray json = new JSONArray();
+		
+		try {
+			
+			SchemaUpuna dao = new SchemaUpuna();
+			
+			json = dao.queryReturnAddress(address);
+			returnString = json.toString();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			return Response.status(500).entity("Server was not able to process your request").build();
+		}
+		
+		return Response.ok(returnString).build();
+}
 
 }
